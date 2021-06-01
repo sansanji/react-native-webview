@@ -154,6 +154,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     mWebViewConfig.configWebView(webView);
     WebSettings settings = webView.getSettings();
     settings.setBuiltInZoomControls(true);
+    settings.setSupportZoom(true);
     settings.setDisplayZoomControls(false);
     settings.setDomStorageEnabled(true);
 
@@ -250,7 +251,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     if (disabled) {
       view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     } else {
-      view.setLayerType(View.LAYER_TYPE_NONE, null);
+      view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
     }
   }
 
@@ -541,7 +542,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mVideoView.setSystemUiVisibility(FULLSCREEN_SYSTEM_UI_VISIBILITY);
-            mReactContext.getCurrentActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            mReactContext.getCurrentActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
           }
 
           mVideoView.setBackgroundColor(Color.BLACK);
@@ -567,7 +568,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
           mWebView.setVisibility(View.VISIBLE);
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mReactContext.getCurrentActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            mReactContext.getCurrentActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
           }
 
           mReactContext.removeLifecycleEventListener(this);
