@@ -14,7 +14,7 @@
     "ci": "CI=true && yarn lint && yarn test",
     "ci:publish": "yarn semantic-release",
     "lint": "yarn tsc --noEmit && yarn eslint ./src --ext .ts,.tsx",
-    "build": "yarn typescript",
+    "build": "yarn add tsc",
     "prepack": "yarn build",
     "test": "yarn jest"
   },
